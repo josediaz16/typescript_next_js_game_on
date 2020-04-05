@@ -6,7 +6,14 @@
   "author": "Jose Diaz",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "start:server": "node-dev ./main.js",
+    "test": "lab -v **/*.test.js"
+  },
   "dependencies": {
-    "@hapi/hapi": "^19.1.1"
+    "@hapi/code": "^8.0.1",
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/lab": "^22.0.4",
+    "node-dev": "^4.0.0"
   }
 }
