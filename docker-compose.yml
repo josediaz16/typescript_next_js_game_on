@@ -1,0 +1,10 @@
+version: '3.2'
+services:
+  web:
+    build: .
+    command: echo "Hello mf"
+    volumes:
+      - .:/game_on
+
+volumes:
+  game_on:
