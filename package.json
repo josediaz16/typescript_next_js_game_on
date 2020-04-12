@@ -7,13 +7,16 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start:server": "node-dev ./main.js",
+    "start:server": "ts-node-dev --respawn --poll ./main.ts",
     "test": "lab -v **/*.test.js"
   },
   "dependencies": {
     "@hapi/code": "^8.0.1",
     "@hapi/hapi": "^19.1.1",
     "@hapi/lab": "^22.0.4",
-    "node-dev": "^4.0.0"
+    "typescript": "^3.8.3"
+  },
+  "devDependencies": {
+    "ts-node-dev": "^1.0.0-pre.44"
   }
 }
