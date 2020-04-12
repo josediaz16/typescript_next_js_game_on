@@ -9,3 +9,4 @@ RUN curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 
 RUN mkdir /game_on
 WORKDIR /game_on
+ENTRYPOINT ["./docker-entrypoint.sh"]
