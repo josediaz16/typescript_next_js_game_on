@@ -1,22 +1,29 @@
 {
-  "name": "game_on",
-  "version": "1.0.0",
-  "description": "Backend API for Game On",
-  "main": "index.js",
-  "author": "Jose Diaz",
-  "license": "MIT",
-  "private": true,
-  "scripts": {
-    "start:server": "ts-node-dev --respawn --poll ./main.ts",
-    "test": "lab -v **/*.test.js"
-  },
-  "dependencies": {
-    "@hapi/code": "^8.0.1",
-    "@hapi/hapi": "^19.1.1",
-    "@hapi/lab": "^22.0.4",
-    "typescript": "^3.8.3"
-  },
-  "devDependencies": {
-    "ts-node-dev": "^1.0.0-pre.44"
-  }
+   "name": "game_on",
+   "version": "1.0.0",
+   "description": "Backend API for Game On",
+   "main": "index.js",
+   "author": "Jose Diaz",
+   "license": "MIT",
+   "private": true,
+   "scripts": {
+      "start:server": "ts-node-dev --respawn --poll ./main.ts",
+      "test": "lab -v **/*.test.js",
+      "start": "ts-node src/index.ts"
+   },
+   "dependencies": {
+      "@hapi/code": "^8.0.1",
+      "@hapi/hapi": "^19.1.1",
+      "@hapi/lab": "^22.0.4",
+      "pg": "^7.3.0",
+      "reflect-metadata": "^0.1.10",
+      "typeorm": "0.2.24",
+      "typescript": "^3.8.3"
+   },
+   "devDependencies": {
+      "ts-node-dev": "^1.0.0-pre.44",
+      "ts-node": "3.3.0",
+      "@types/node": "^8.0.29",
+      "typescript": "3.3.3333"
+   }
 }
