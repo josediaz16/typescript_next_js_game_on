@@ -1,24 +1,52 @@
-{
-   "type": "postgres",
-   "host": "postgres",
-   "port": 5432,
-   "username": "postgres",
-   "password": "",
-   "database": "game_on_dev",
-   "synchronize": true,
-   "logging": false,
-   "entities": [
+[
+  {
+    "name": "development",
+    "type": "postgres",
+    "host": "postgres",
+    "port": 5432,
+    "username": "postgres",
+    "password": "",
+    "database": "game_on_dev",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
       "src/entity/**/*.ts"
-   ],
-   "migrations": [
-      "src/migration/**/*.ts"
-   ],
-   "subscribers": [
-      "src/subscriber/**/*.ts"
-   ],
-   "cli": {
-      "entitiesDir": "src/entity",
-      "migrationsDir": "src/migration",
-      "subscribersDir": "src/subscriber"
-   }
-}
+     ],
+     "migrations": [
+       "src/migration/**/*.ts"
+     ],
+     "subscribers": [
+       "src/subscriber/**/*.ts"
+     ],
+     "cli": {
+       "entitiesDir": "src/entity",
+       "migrationsDir": "src/migration",
+       "subscribersDir": "src/subscriber"
+     }
+  },
+  {
+    "name": "test",
+    "type": "postgres",
+    "host": "postgres",
+    "port": 5432,
+    "username": "postgres",
+    "password": "",
+    "database": "game_on_test",
+    "synchronize": true,
+    "logging": false,
+    "entities": [
+      "src/entity/**/*.ts"
+     ],
+     "migrations": [
+       "src/migration/**/*.ts"
+     ],
+     "subscribers": [
+       "src/subscriber/**/*.ts"
+     ],
+     "cli": {
+       "entitiesDir": "src/entity",
+       "migrationsDir": "src/migration",
+       "subscribersDir": "src/subscriber"
+     }
+  }
+]

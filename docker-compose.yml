@@ -7,6 +7,16 @@ services:
       - 3000:3000
     volumes:
       - .:/game_on
+    depends_on:
+      - postgres
+    tty: true
+    stdin_open: true
+
+  postgres:
+    image: postgres:11.2
+    volumes:
+      - postgres_game_on:/var/lib/postgresql/data
 
 volumes:
   game_on:
+  postgres_game_on:

@@ -9,7 +9,12 @@
    "scripts": {
       "start:server": "ts-node-dev --respawn --poll ./main.ts",
       "test": "lab -v **/*.test.js",
-      "start": "ts-node src/index.ts"
+      "start": "ts-node src/index.ts",
+      "create": "node tasks/createDB.js",
+      "test:create": "node tasks/createDB.js test",
+      "drop": "node tasks/dropDB.js",
+      "drop:all": "(node tasks/dropDB.js) && (node tasks/dropDB.js test)",
+      "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js"
    },
    "dependencies": {
       "@hapi/code": "^8.0.1",
@@ -23,7 +28,6 @@
    "devDependencies": {
       "ts-node-dev": "^1.0.0-pre.44",
       "ts-node": "3.3.0",
-      "@types/node": "^8.0.29",
-      "typescript": "3.3.3333"
+      "@types/node": "^8.0.29"
    }
 }
