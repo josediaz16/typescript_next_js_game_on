@@ -7,12 +7,23 @@ export class User {
     id: number;
 
     @Column()
+    age: number;
+
+    @Column()
+    email: string;
+
+    @Column()
+    encryptedPassword: string;
+
+    @Column()
     firstName: string;
 
     @Column()
     lastName: string;
 
     @Column()
-    age: number;
+    phone: string;
 
+    @Column()
+    role: string;
 }

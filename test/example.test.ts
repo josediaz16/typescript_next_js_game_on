@@ -1,15 +1,17 @@
-`use strict`;
+import * as Lab   from '@hapi/lab';
+import { expect } from '@hapi/code';
+import { init }   from '../index';
 
-const Lab = require('@hapi/lab');
-const { expect } = require('@hapi/code');
+const lab = Lab.script();
+
 const {
   afterEach,
   beforeEach,
   describe,
   it
-} = exports.lab = Lab.script();
+} = lab;
 
-const { init } = require('../index');
+export { lab };
 
 describe('GET /', () => {
   let server;
@@ -28,6 +30,6 @@ describe('GET /', () => {
       url: '/hello_world'
     });
     expect(res.statusCode).to.equal(200);
-    expect(res.payload).to.equal('Hello world my friend');
+    expect(res.payload).to.equal('Hello world my friend buu');
   });
 });
