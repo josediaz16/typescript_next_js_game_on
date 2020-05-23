@@ -19,28 +19,13 @@ server.route({
 });
 
 async function init() {
-  await withConnection(() => server.initialize());
+  await server.initialize();
   return server;
 };
 
-function handleError(err) {
-  console.log(err);
-  process.exit(1);
-}
-
 async function start() {
-  await withConnection(() => server.start());
-}
-
-async function withConnection(serverFn: () => void) {
-  try {
-    const connection = await createTypeOrmConn();
-    await serverFn();
-    server.dbConnection = connection;
-    console.log("Server running in " + server.info.uri)
-  } catch (err) {
-    handleError(err)
-  }
+  await server.start();
+  return server;
 }
 
 export {

@@ -33,6 +33,7 @@
     "password": "",
     "database": "game_on_test",
     "synchronize": true,
+    "dropSchema": true,
     "logging": false,
     "entities": [
       "src/entity/**/*.ts"
