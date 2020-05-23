@@ -21,6 +21,8 @@
       "@hapi/joi": "^17.1.1",
       "@hapi/lab": "^22.0.4",
       "awesome-phonenumber": "^2.33.0",
+      "bcrypt": "^4.0.1",
+      "monet": "^0.9.1",
       "pg": "^7.3.0",
       "reflect-metadata": "^0.1.10",
       "typeorm": "0.2.24",
