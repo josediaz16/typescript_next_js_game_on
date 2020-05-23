@@ -1,7 +1,7 @@
 const Joi = require('@hapi/joi');
 const Phonenumber = require('awesome-phonenumber');
 
-const ValidRoles = ['Player', 'Admin'];
+const ValidRoles = ['player', 'admin'];
 const PasswordRegex = new RegExp('^[a-zA-Z0-9]{3,30}$');
 
 const RequiredString = Joi.string().required();
@@ -25,7 +25,7 @@ const createSchema = Joi.object({
   firstName: RequiredString,
   lastName: RequiredString,
   birthday: Joi.date(),
-  phone: RequiredString
+  phoneNumber: RequiredString
     .custom(validatePhone, 'Phone validation')
     .messages({'any.invalid': 'Phone Number or Country Code invalid'}),
   countryCode: RequiredString

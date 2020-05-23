@@ -25,6 +25,9 @@ export class Country {
   @Column()
   countryCode: string;
 
+  @Column()
+  name: string;
+
   @OneToMany(type => User, user => user.country)
   users: User[];
 }

@@ -43,6 +43,9 @@ export class User {
   })
   role: UserRole;
 
+  @Column({nullable: false})
+  countryId: number;
+
   @ManyToOne(type => Country, country => country.users, {nullable: false})
   country: Country;
 }

@@ -20,7 +20,7 @@ const input = {
   email: 'chandlerbing@mail.com',
   password: 'idontcare',
   passwordConfirmation: 'idontcare',
-  phone: '3213201312',
+  phoneNumber: '3213201312',
   countryCode: 'co',
   birthday: '2/28/1969',
   role: 'Player'
@@ -41,7 +41,7 @@ describe('createSchema', () => {
       lastName: 'Bing',
       password: 'idontcare',
       passwordConfirmation: 'idontcare',
-      phone: '+57 321 3201312'
+      phoneNumber: '+57 321 3201312'
       countryCode: 'CO'
     };
     expect(value.birthday).to.be.a.date();
@@ -74,14 +74,14 @@ describe('createSchema', () => {
     );
   })
 
-  it('is not valid when phone is not valid', () => {
-    let newInput = { ...input, phone: '0707123456' }
+  it('is not valid when phoneNumber is not valid', () => {
+    let newInput = { ...input, phoneNumber: '0707123456' }
     const { error, value } = createSchema.validate(newInput, options)
 
     expect(error.details[0]).to.include(
       {
         message: 'Phone Number or Country Code invalid',
-        path: ['phone'],
+        path: ['phoneNumber'],
         type: 'any.invalid',
       }
     );
@@ -94,7 +94,7 @@ describe('createSchema', () => {
     expect(error.details[0]).to.include(
       {
         message: 'Phone Number or Country Code invalid',
-        path: ['phone'],
+        path: ['phoneNumber'],
         type: 'any.invalid',
       }
     );
@@ -117,10 +117,10 @@ describe('createSchema', () => {
         context: { label: 'lastName', key: 'lastName' }
       },
       {
-        message: '"phone" is required',
-        path: ['phone'],
+        message: '"phoneNumber" is required',
+        path: ['phoneNumber'],
         type: 'any.required',
-        context: { label: 'phone', key: 'phone' }
+        context: { label: 'phoneNumber', key: 'phoneNumber' }
       },
       {
         message: '"countryCode" is required',
