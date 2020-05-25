@@ -1,15 +1,7 @@
-import { getConnection }  from "typeorm";
+import {EntityRepository, Repository} from 'typeorm';
 import { User } from "../entity/User";
 
-async function save(user: User) {
-  const conn = await getConnection();
-
-  return await conn
-    .getRepository(User)
-    .save(user)
+@EntityRepository(User)
+export class UserRepository extends Repository<User> {
 }
 
-export {
-  last,
-  save
-}

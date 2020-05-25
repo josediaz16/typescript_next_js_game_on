@@ -1,14 +1,17 @@
 import * as Lab              from '@hapi/lab';
 import { expect }            from '@hapi/code';
-import { createConnection }  from 'typeorm';
-import * as Manager          from '../../../util/genericManager';
+import {
+  createConnection,
+  getCustomRepository
+}  from 'typeorm';
 import { Success, Fail }     from "monet";
 
+import * as Manager     from '../../../util/genericManager';
 import { create }       from '../../../src/services/Users';
 import { User }         from '../../../src/entity/User';
 import { Country }      from '../../../src/entity/Country';
 import { create }       from '../../../src/services/users';
-import * as CountryRepo from '../../../src/repositories/countryRepository';
+import { CountryRepository } from '../../../src/repositories/countryRepository';
 
 const lab = Lab.script();
 
@@ -31,10 +34,13 @@ const input = {
   role: 'player'
 }
 
+let countryRepo;
+
 export { lab };
 
 before(async () => {
   await createConnection();
+  countryRepo = getCustomRepository(CountryRepository);
 });
 
 describe('create', () => {
@@ -45,7 +51,7 @@ describe('create', () => {
     country.currency = 'COP',
     country.countryCode = '+57'
 
-    await CountryRepo.save(country)
+    await countryRepo.save(country)
 
     const result = await create(input);
 

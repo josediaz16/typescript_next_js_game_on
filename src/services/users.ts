@@ -1,9 +1,10 @@
 import { Validation, Success, Fail } from "monet";
+import { getCustomRepository }       from "typeorm";
+import { encrypt }                   from '../../util/crypto';
 
-import { save }    from '../repositories/userRepository';
-import { encrypt } from '../../util/crypto';
-import { User }    from '../entity/User';
-import { findByCodeIso as findCountryByCodeIso } from '../repositories/countryRepository';
+import { UserRepository }    from '../repositories/userRepository';
+import { CountryRepository } from '../repositories/countryRepository';
+import { User }              from '../entity/User';
 
 type Result = Validation<User, any>;
 
@@ -15,9 +16,11 @@ async function create(user: User): Promise<Result> {
     ...userData
   } = user;
 
+  const userRepo = getCustomRepository(UserRepository);
+  const countryRepo = getCustomRepository(CountryRepository);
   const encryptedPassword = await encrypt(password);
-  const country = await findCountryByCodeIso(codeIso);
-  const newUser = await save({...userData, encryptedPassword, countryId: country.id});
+  const country = await countryRepo.findByCodeIso(codeIso);
+  const newUser = await userRepo.save({...userData, encryptedPassword, countryId: country.id});
   return Success(newUser)
 };
 
