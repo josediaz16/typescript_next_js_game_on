@@ -1,20 +1,8 @@
-import { getTypeOrmConn }  from "../../util/createTypeOrmConn";
+import { getConnection }  from "typeorm";
 import { User } from "../entity/User";
 
-const last = async () => {
-  const conn = await getTypeOrmConn();
-
-  const lastUser = await conn
-    .getRepository(User)
-    .createQueryBuilder("user")
-    .orderBy("user.id")
-    .getOne();
-
-  return lastUser
-}
-
 async function save(user: User) {
-  const conn = await getTypeOrmConn();
+  const conn = await getConnection();
 
   return await conn
     .getRepository(User)

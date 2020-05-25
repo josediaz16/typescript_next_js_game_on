@@ -8,6 +8,7 @@
    "private": true,
    "scripts": {
       "start:server": "NODE_ENV=development ts-node-dev --respawn --poll ./main.ts",
+      "console": "NODE_ENV=development ts-node",
       "test": "NODE_ENV=test lab",
       "db:create": "node tasks/createDB.js",
       "test:db:create": "node tasks/createDB.js test",

@@ -1,13 +1,13 @@
 import * as Lab              from '@hapi/lab';
 import { expect }            from '@hapi/code';
-import { createTypeOrmConn } from '../../../util/createTypeOrmConn';
+import { createConnection }  from 'typeorm';
+import * as Manager          from '../../../util/genericManager';
 import { Success, Fail }     from "monet";
 
 import { create }       from '../../../src/services/Users';
 import { User }         from '../../../src/entity/User';
 import { Country }      from '../../../src/entity/Country';
 import { create }       from '../../../src/services/users';
-import * as UserRepo    from '../../../src/repositories/userRepository';
 import * as CountryRepo from '../../../src/repositories/countryRepository';
 
 const lab = Lab.script();
@@ -34,7 +34,7 @@ const input = {
 export { lab };
 
 before(async () => {
-  await createTypeOrmConn();
+  await createConnection();
 });
 
 describe('create', () => {
@@ -49,7 +49,7 @@ describe('create', () => {
 
     const result = await create(input);
 
-    const user = await UserRepo.last();
+    const user = await Manager.last(User);
     const expectedResult = Success(user);
     expect(result).to.equal(expectedResult)
   })
