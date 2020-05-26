@@ -8,7 +8,7 @@
    "private": true,
    "scripts": {
       "start:server": "NODE_ENV=development ts-node-dev --respawn --poll ./main.ts",
-      "console": "NODE_ENV=development ts-node",
+      "console": "NODE_ENV=development ts-node -r tsconfig-paths/register",
       "test": "NODE_ENV=test lab",
       "db:create": "node tasks/createDB.js",
       "test:db:create": "node tasks/createDB.js test",
@@ -20,7 +20,6 @@
       "@hapi/code": "^8.0.1",
       "@hapi/hapi": "^19.1.1",
       "@hapi/joi": "^17.1.1",
-      "@hapi/lab": "^22.0.4",
       "awesome-phonenumber": "^2.33.0",
       "bcrypt": "^4.0.1",
       "monet": "^0.9.1",
@@ -30,9 +29,12 @@
       "typescript": "^3.8.3"
    },
    "devDependencies": {
+      "@types/jest": "^25.2.3",
       "@types/node": "^8.0.29",
-      "lab-transform-typescript": "^3.0.1",
-      "ts-node": "3.3.0",
-      "ts-node-dev": "^1.0.0-pre.44"
+      "jest": "^26.0.1",
+      "ts-jest": "^26.0.0",
+      "ts-node": "8.10.1",
+      "ts-node-dev": "^1.0.0-pre.44",
+      "tsconfig-paths": "^3.9.0"
    }
 }

@@ -1,11 +1,7 @@
 import { getManager } from 'typeorm';
-import { Entity } from 'typeorm';
+import { EntitySchema } from 'typeorm';
 
-interface Nameable {
-  name: string;
-}
-
-export async function last(entity: Nameable) {
+export async function last(entity) {
   const manager = await getManager();
   const tableName = entity.name;
 

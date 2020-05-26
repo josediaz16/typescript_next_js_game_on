@@ -1,17 +1,4 @@
-import * as Lab   from '@hapi/lab';
-import { expect } from '@hapi/code';
 import { init }   from '../index';
-
-const lab = Lab.script();
-
-const {
-  afterEach,
-  beforeEach,
-  describe,
-  it
-} = lab;
-
-export { lab };
 
 describe('GET /', () => {
   let server;
@@ -29,7 +16,7 @@ describe('GET /', () => {
       method: 'get',
       url: '/hello_world'
     });
-    expect(res.statusCode).to.equal(200);
-    expect(res.payload).to.equal('Hello world my friend buu');
+    expect(res.statusCode).toBe(200);
+    expect(res.payload).toBe('Hello world my friend buu');
   });
 });

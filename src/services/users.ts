@@ -2,13 +2,13 @@ import { Validation, Success, Fail } from "monet";
 import { getCustomRepository }       from "typeorm";
 import { encrypt }                   from '../../util/crypto';
 
-import { UserRepository }    from '../repositories/userRepository';
-import { CountryRepository } from '../repositories/countryRepository';
-import { User }              from '../entity/User';
+import { UserRepository }    from '@/repositories/userRepository';
+import { CountryRepository } from '@/repositories/countryRepository';
+import { User }              from '@/entity/User';
 
 type Result = Validation<User, any>;
 
-async function create(user: User): Promise<Result> {
+async function create(user): Promise<Result> {
   const {
     password,
     passwordConfirmation,

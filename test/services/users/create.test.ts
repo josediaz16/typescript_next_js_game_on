@@ -1,26 +1,15 @@
-import * as Lab              from '@hapi/lab';
-import { expect }            from '@hapi/code';
 import {
   createConnection,
   getCustomRepository
 }  from 'typeorm';
+
 import { Success, Fail }     from "monet";
 
 import * as Manager     from '../../../util/genericManager';
-import { create }       from '../../../src/services/Users';
-import { User }         from '../../../src/entity/User';
-import { Country }      from '../../../src/entity/Country';
-import { create }       from '../../../src/services/users';
-import { CountryRepository } from '../../../src/repositories/countryRepository';
-
-const lab = Lab.script();
-
-const {
-  after,
-  before,
-  describe,
-  it
-} = lab;
+import { User }         from '@/entity/User';
+import { Country }      from '@/entity/Country';
+import { create }       from '@/services/users';
+import { CountryRepository } from '@/repositories/countryRepository';
 
 const input = {
   firstName: 'Chandler',
@@ -35,16 +24,19 @@ const input = {
 }
 
 let countryRepo;
+let conn;
 
-export { lab };
-
-before(async () => {
-  await createConnection();
+beforeAll(async () => {
+  conn = await createConnection();
   countryRepo = getCustomRepository(CountryRepository);
 });
 
+afterAll(async () => {
+  await conn.close();
+})
+
 describe('create', () => {
-  it('Creates a new user when data is valid', async () => {
+  test('Creates a new user when data is valid', async () => {
     let country = new Country()
     country.name = 'Colombia',
     country.codeIso = 'CO',
@@ -57,6 +49,6 @@ describe('create', () => {
 
     const user = await Manager.last(User);
     const expectedResult = Success(user);
-    expect(result).to.equal(expectedResult)
+    expect(result).toEqual(expectedResult)
   })
 });

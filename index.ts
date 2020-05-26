@@ -1,9 +1,6 @@
 import "reflect-metadata";
 
-import * as Hapi              from "@hapi/hapi";
-import {createConnection}     from "typeorm";
-import {User}                 from "src/entity/User";
-import { createTypeOrmConn }  from "./util/createTypeOrmConn";
+import * as Hapi from "@hapi/hapi";
 
 const server  = Hapi.server({
   port: 8000,

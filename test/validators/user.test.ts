@@ -1,18 +1,4 @@
-import * as Lab   from '@hapi/lab';
-import { expect } from '@hapi/code';
-
-import { createSchema }   from '../../src/validators/user';
-
-const lab = Lab.script();
-
-const {
-  afterEach,
-  beforeEach,
-  describe,
-  it
-} = lab;
-
-export { lab };
+import { createSchema }   from '@/validators/user';
 
 const input = {
   firstName: 'Chandler',
@@ -34,24 +20,24 @@ describe('createSchema', () => {
   it('is ok for valid input', () => {
     const { error, value } = createSchema.validate(input, options)
 
-    expect(error).to.equal(undefined);
-    expect(value).to.include({
+    expect(error).toBe(undefined);
+    expect(value).toMatchObject({
       email: 'chandlerbing@mail.com',
       firstName: 'Chandler',
       lastName: 'Bing',
       password: 'idontcare',
       passwordConfirmation: 'idontcare',
-      phoneNumber: '+57 321 3201312'
+      phoneNumber: '+57 321 3201312',
       countryCode: 'CO'
-    };
-    expect(value.birthday).to.be.a.date();
+    });
+    expect(value.birthday).toBeInstanceOf(Date);
   })
 
   it('is not valid if email has wrong format', () => {
     let newInput = { ...input, email: 'hey' }
     const { error, value } = createSchema.validate(newInput, options)
 
-    expect(error.details).to.equal([
+    expect(error.details).toEqual([
       {
         message: '"email" must be a valid email',
         path: ['email'],
@@ -65,7 +51,7 @@ describe('createSchema', () => {
     let newInput = { ...input, passwordConfirmation: 'whatthehell' }
     const { error, value } = createSchema.validate(newInput, options)
 
-    expect(error.details[0]).to.include(
+    expect(error.details[0]).toMatchObject(
       {
         message: '"passwordConfirmation" must be [ref:password]',
         path: ['passwordConfirmation'],
@@ -78,7 +64,7 @@ describe('createSchema', () => {
     let newInput = { ...input, phoneNumber: '0707123456' }
     const { error, value } = createSchema.validate(newInput, options)
 
-    expect(error.details[0]).to.include(
+    expect(error.details[0]).toMatchObject(
       {
         message: 'Phone Number or Country Code invalid',
         path: ['phoneNumber'],
@@ -91,7 +77,7 @@ describe('createSchema', () => {
     let newInput = { ...input, countryCode: 'SE' }
     const { error, value } = createSchema.validate(newInput, options)
 
-    expect(error.details[0]).to.include(
+    expect(error.details[0]).toMatchObject(
       {
         message: 'Phone Number or Country Code invalid',
         path: ['phoneNumber'],
@@ -148,6 +134,6 @@ describe('createSchema', () => {
       }
     ]
 
-    expect(error.details).to.equal(expectedErrors);
+    expect(error.details).toEqual(expectedErrors);
   })
 })
