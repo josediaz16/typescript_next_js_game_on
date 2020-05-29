@@ -5,10 +5,12 @@ import {
 
 import { Success, Fail }     from "monet";
 
+import { factories }    from '../../factories/index';
+
 import * as Manager     from '../../../util/genericManager';
 import { User }         from '@/entity/User';
-import { Country }      from '@/entity/Country';
 import { create }       from '@/services/users';
+
 import { CountryRepository } from '@/repositories/countryRepository';
 
 const input = {
@@ -37,11 +39,7 @@ afterAll(async () => {
 
 describe('create', () => {
   test('Creates a new user when data is valid', async () => {
-    let country = new Country()
-    country.name = 'Colombia',
-    country.codeIso = 'CO',
-    country.currency = 'COP',
-    country.countryCode = '+57'
+    let country = factories.country.build();
 
     await countryRepo.save(country)
 
